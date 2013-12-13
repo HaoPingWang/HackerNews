@@ -7,7 +7,7 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="405dp"
         android:cacheColorHint="?attr/listCacheColorHint"
         android:divider="@null"
         android:fadingEdge="none"
@@ -24,5 +24,46 @@
     <include
         android:id="@+id/cnt_error"
         layout="@layout/vw_loadinglist_error" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <com.airlocksoftware.holo.image.IconView
+            android:id="@+id/icv_night_mode"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bright_accent"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:scaleType="center"
+            app:icon_src="@drawable/like_button" />
+        
+         <com.airlocksoftware.holo.image.IconView
+            android:id="@+id/icv_night_mode"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bright_accent"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:scaleType="center"
+            app:icon_src="@drawable/bookmark_button" />
+         
+         <com.airlocksoftware.holo.image.IconView
+            android:id="@+id/icv_night_mode"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bright_accent"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:scaleType="center"
+            app:icon_src="@drawable/follow_button" />
+    </LinearLayout>
 
 </FrameLayout>
