@@ -158,7 +158,7 @@ public class UserPrefs {
 	// }
 
 	public enum Theme {
-		LIGHT, DARK
+		LIGHT, DARK, RED, PINK, ORANGE, YELLOW, GREEN, ROYALBLUE, BLUE, PURPLE
 	}
 
 	public Theme getTheme() {

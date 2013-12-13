@@ -21,6 +21,38 @@
         <item name="font">roboto_rg</item>
     </style>
 
+    <style name="FontText.ActionBar.Overflow.Red">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="FontText.ActionBar.Overflow.Pink">
+        <item name="android:textColor">@color/black</item>
+    </style>    
+    
+    <style name="FontText.ActionBar.Overflow.Orange">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="FontText.ActionBar.Overflow.Yellow">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="FontText.ActionBar.Overflow.Green">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+    <style name="FontText.ActionBar.Overflow.Blue">
+        <item name="android:textColor">@color/black</item>
+    </style>    
+    
+    <style name="FontText.ActionBar.Overflow.Royalblue">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="FontText.ActionBar.Overflow.Purple">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
     <style name="FontText.ActionBar.Overflow.Dark">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -225,6 +257,38 @@
         <item name="android:scaleType">center</item>
     </style>
 
+    <style name="IconView.ActionBar.Red">
+        <item name="icon_colors">@drawable/st_color_ic_actionbar_dark</item>
+    </style>
+
+    <style name="IconView.ActionBar.Pink">
+        <item name="icon_colors">@color/grey_30</item>
+    </style>
+        
+    <style name="IconView.ActionBar.Orange">
+        <item name="icon_colors">@drawable/st_color_ic_actionbar_dark</item>
+    </style>
+        
+    <style name="IconView.ActionBar.Yellow">
+        <item name="icon_colors">@color/grey_30</item>
+    </style>
+    
+    <style name="IconView.ActionBar.Green">
+        <item name="icon_colors">@color/grey_30</item>
+    </style>
+    
+    <style name="IconView.ActionBar.Blue">
+        <item name="icon_colors">@color/grey_30</item>
+    </style>
+    
+    <style name="IconView.ActionBar.Royalblue">
+        <item name="icon_colors">@drawable/st_color_ic_actionbar_dark</item>
+    </style>
+        
+    <style name="IconView.ActionBar.Purple">
+        <item name="icon_colors">@drawable/st_color_ic_actionbar_dark</item>
+    </style>
+        
     <style name="IconView.ActionBar.Dark">
         <item name="icon_colors">@drawable/st_color_ic_actionbar_dark</item>
     </style>

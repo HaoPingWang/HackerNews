@@ -90,6 +90,8 @@
     <string name="automatic_bug_reports_description">Any information submited is never shared with anyone else &amp; is used solely for the purpose of fixing errors.</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="open_in_browser_description">Open links in your devices web browser instead of inside the app.</string>
+    <string name="background">Background</string>
+    <string name="background_description">You can change the background here as you like.</string>
     <string name="for_android">for Android</string>
     <string name="enter_username_here">enter username here</string>
     <string name="password">Password</string>

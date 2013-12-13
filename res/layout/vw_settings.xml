@@ -104,5 +104,46 @@
             android:layout_marginRight="13.33dp"
             android:background="?attr/dividerColor" />
     </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/btn_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_bright_accent" >
+
+        <com.airlocksoftware.holo.type.FontText
+            android:id="@+id/txt_label_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="6.66dp"
+            android:paddingLeft="13.33dp"
+            android:text="@string/background"
+            android:textColor="?attr/textColorPrimary"
+            android:textSize="20sp" />
+
+        <com.airlocksoftware.holo.type.FontText
+            android:id="@+id/txt_sublabel_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/txt_label_background"
+            android:layout_marginBottom="6.66dp"
+            android:paddingLeft="13.33dp"
+            android:paddingRight="13.33dp"
+            android:text="@string/background_description"
+            android:textColor="?attr/textColorSecondary"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="fill_parent"
+            android:layout_height="1.5dp"
+            android:layout_below="@+id/txt_sublabel_background"
+            android:layout_marginLeft="13.33dp"
+            android:layout_marginRight="13.33dp"
+            android:background="?attr/dividerColor" />
+    </RelativeLayout>
 
 </merge>

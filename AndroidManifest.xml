@@ -32,6 +32,9 @@
         <activity
             android:name=".activity.AboutActivity"
             android:label="@string/about" />
+        <activity
+            android:name=".activity.BackgroundActivity"
+            android:label="@string/background" />
         <!--<activity-->
             <!--android:name=".activity.DonationActivity"-->
             <!--android:excludeFromRecents="true"-->

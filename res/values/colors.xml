@@ -38,4 +38,28 @@
     <color name="cacheColorHintDark">@color/grey_19</color>
     <color name="cacheColorHintLight">@color/grey_93</color>
     
+    <!-- background_button colors -->
+    <color name="bt_red">#FF0033</color>
+    <color name="bt_pink">#F5A9F2</color>
+    <color name="bt_orange">#FF9966</color>
+    <color name="bt_yellow">#FFFF66</color>
+    <color name="bt_green">#99CC33</color>
+    <color name="bt_blue">#ABCDEF</color>
+    <color name="bt_royalblue">#4169E1</color>
+    <color name="bt_purple">#9966CC</color>
+    <color name="bt_black">#000000</color>
+    <color name="bt_white">#FFFFFF</color>
+    
+    <!-- background colors -->
+    <color name="bc_red">#cc0000</color>
+    <color name="bc_pink">#ff99ff</color>
+    <color name="bc_orange">#ff6600</color>
+    <color name="bc_yellow">#ffff99</color>
+    <color name="bc_green">#99ff00</color>
+    <color name="bc_blue">#99ccff</color>
+    <color name="bc_royalblue">#365fdb</color>
+    <color name="bc_purple">#ff99ff</color>
+    
+    
+    
 </resources>

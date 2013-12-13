@@ -99,6 +99,30 @@ public abstract class SlideoutMenuActivity extends ActionBarActivity implements 
 	private void retrieveTheme() {
 		Theme theme = mUserPrefs.getTheme();
 		switch (theme) {
+		case RED:
+			setTheme(R.style.Red);
+			break;
+		case PINK:
+			setTheme(R.style.Pink);
+			break;
+		case ORANGE:
+			setTheme(R.style.Orange);
+			break;
+		case YELLOW:
+			setTheme(R.style.Yellow);
+			break;
+		case GREEN:
+			setTheme(R.style.Green);
+			break;
+		case ROYALBLUE:
+			setTheme(R.style.Royalblue);
+			break;
+		case BLUE:
+			setTheme(R.style.Blue);
+			break;
+		case PURPLE:
+			setTheme(R.style.Purple);
+			break;
 		case LIGHT:
 			setTheme(R.style.Light);
 			break;

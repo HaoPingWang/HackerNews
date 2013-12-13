@@ -1,10 +1,11 @@
 package com.airlocksoftware.hackernews.activity;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
-
 import com.airlocksoftware.hackernews.R;
 import com.airlocksoftware.hackernews.data.UserPrefs;
 import com.airlocksoftware.holo.utils.ViewUtils;
@@ -13,6 +14,7 @@ public class SettingsActivity extends SlideoutMenuActivity {
 
 	private View mBrowserButton;
 	private View mBugReportsButton;
+	private View mBackgroundButton;
 
 	private boolean mOpenInBrowser;
 	private boolean mSubmitBugReports;
@@ -28,7 +30,6 @@ public class SettingsActivity extends SlideoutMenuActivity {
 	};
 
 	private OnClickListener mBugReportsListener = new OnClickListener() {
-
 		@Override
 		public void onClick(View v) {
 			mSubmitBugReports = !mSubmitBugReports;
@@ -36,7 +37,19 @@ public class SettingsActivity extends SlideoutMenuActivity {
 			notifyDataSetChanged();
 		}
 	};
-
+	
+	private OnClickListener mBackgroundListener = new OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			SettingsActivity activity = SettingsActivity.this;
+			Intent intent = new Intent(activity, BackgroundActivity.class);
+			if (intent != null) {
+				finish(); // top level activities won't go onto the back stack
+				activity.overridePendingTransition(0, 0);
+				startActivity(intent);
+			}
+		}
+	};
 	@Override
 	public void onCreate(Bundle savedState) {
 		super.onCreate(savedState);
@@ -63,9 +76,11 @@ public class SettingsActivity extends SlideoutMenuActivity {
 	private void findAndBindViews() {
 		mBrowserButton = findViewById(R.id.btn_browser);
 		mBugReportsButton = findViewById(R.id.btn_bug_reports);
+		mBackgroundButton = findViewById(R.id.btn_background);
 
 		mBrowserButton.setOnClickListener(mBrowserListener);
 		mBugReportsButton.setOnClickListener(mBugReportsListener);
+		mBackgroundButton.setOnClickListener(mBackgroundListener);
 	}
 
 	@Override
