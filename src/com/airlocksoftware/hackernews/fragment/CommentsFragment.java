@@ -1,5 +1,8 @@
 package com.airlocksoftware.hackernews.fragment;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -77,7 +80,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 
 	private View mHeaderView, mError, mEmpty, mLoading;
 	private TextView mHeaderTitle, mHeaderUsername, mHeaderPoints, mHeaderSelfText;
-	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon;
+	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon;
 	private View mUpvoteButton, mSelfTextContainer;
 	private ActionBarButton mBrowserButton, mRefreshButton;
 	private SharePopup mShare;
@@ -126,6 +129,13 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 			mShare.shareStory(mStory);
 		}
 	};
+	
+	private View.OnClickListener mBookmarkListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			saveStoryID(mStory.storyId);
+		}
+	};
 
 	// Constants
 	public static final String STORY = CommentsFragment.class.getSimpleName() + ".story";
@@ -148,8 +158,28 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if (container == null) return null;
 		View view = inflater.inflate(R.layout.frg_comments, container, false);
+		findBottomview(view);
 		return view;
 	}
+	
+	private void findBottomview(View view){
+		mBookmarkIcon = (IconView) view.findViewById(R.id.icv_bookmark);
+		mBookmarkIcon.setOnClickListener(mBookmarkListener);
+	}
+	
+	private void saveStoryID(long storyId) {
+        try {
+        	String FILE_NAME = "StoryIDSavedFile";
+            FileOutputStream fos = getActivity().openFileOutput(FILE_NAME,Context.MODE_APPEND);
+            String input=String.valueOf(storyId)+" ";
+            fos.write(input.getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@SuppressWarnings("unchecked")
 	@Override

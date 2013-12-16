@@ -33,7 +33,7 @@
         android:orientation="horizontal" >
 
         <com.airlocksoftware.holo.image.IconView
-            android:id="@+id/icv_night_mode"
+            android:id="@+id/icv_like"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -44,7 +44,7 @@
             app:icon_src="@drawable/like_button" />
         
          <com.airlocksoftware.holo.image.IconView
-            android:id="@+id/icv_night_mode"
+            android:id="@+id/icv_bookmark"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
@@ -55,7 +55,7 @@
             app:icon_src="@drawable/bookmark_button" />
          
          <com.airlocksoftware.holo.image.IconView
-            android:id="@+id/icv_night_mode"
+            android:id="@+id/icv_follow"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
