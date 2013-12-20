@@ -7,7 +7,7 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
-        android:layout_height="405dp"
+        android:layout_height="388dp"
         android:cacheColorHint="?attr/listCacheColorHint"
         android:divider="@null"
         android:fadingEdge="none"

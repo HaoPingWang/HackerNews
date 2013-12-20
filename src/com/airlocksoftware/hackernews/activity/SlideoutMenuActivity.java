@@ -263,6 +263,9 @@ public abstract class SlideoutMenuActivity extends ActionBarActivity implements 
 				intent = new Intent(activity, MainActivity.class);
 				intent.putExtra(MainActivity.PAGE, Page.NEW);
 				break;
+			case R.id.favoritelist_button:
+				intent = new Intent(activity, MainActivity.class);
+				intent.putExtra(MainActivity.PAGE, Page.FAVORITELIST);
 			case R.id.user_button:
 				intent = new Intent(activity, UserActivity.class);
 				intent.putExtra(UserActivity.USERNAME, mUserPrefs.getUsername());

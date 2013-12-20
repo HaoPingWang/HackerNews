@@ -3,6 +3,7 @@
 package com.airlocksoftware.hackernews.fragment;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -148,7 +149,6 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	public static final String COMMENTS = CommentsFragment.class.getSimpleName() + ".comments";
 	@SuppressWarnings("unused")
 	private static final String TAG = CommentsFragment.class.getSimpleName();
-
 	/** Time (in milliseconds) before a set of comments is considered expired and should be reloaded. **/
 	private static final long CACHE_EXPIRATION = 1000 * 60 * 20; // 20 minutes
 	public static final int NO_STORY_ID = -1;
@@ -171,7 +171,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		mBookmarkIcon = (IconView) view.findViewById(R.id.icv_bookmark);
 		mBookmarkIcon.setOnClickListener(mBookmarkListener);
 	}
-	
+
 	private void saveStoryID(long storyId) {
 		String path = Environment.getExternalStorageDirectory().getPath();
 		File dir = new File(path + "/HackerNews");
@@ -531,5 +531,4 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		 **/
 		public boolean commentsFragmentIsInLayout();
 	}
-
 }
