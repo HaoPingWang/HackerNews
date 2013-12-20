@@ -1,5 +1,8 @@
+//modified by 102522059
+
 package com.airlocksoftware.hackernews.fragment;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,10 +17,12 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,17 +173,25 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	}
 	
 	private void saveStoryID(long storyId) {
-        try {
-        	String FILE_NAME = "StoryIDSavedFile";
-            FileOutputStream fos = getActivity().openFileOutput(FILE_NAME,Context.MODE_APPEND);
-            String input=String.valueOf(storyId)+" ";
-            fos.write(input.getBytes());
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		String path = Environment.getExternalStorageDirectory().getPath();
+		File dir = new File(path + "/HackerNews");
+		if (!dir.exists()){
+			dir.mkdir();
+		}
+		String filename = "StoryIDSavedFile.txt";
+		try {
+		    File file = new File(path + "/Hackernews/" + filename);
+		    FileOutputStream fout = new FileOutputStream(file,isAdded());
+		       
+		    String input=String.valueOf(storyId)+"\n";
+	        fout.write(input.getBytes());
+		    fout.close();
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		Log.d(TAG, "Write storyID to SDCARD!");
     }
 
 	@SuppressWarnings("unchecked")
