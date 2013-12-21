@@ -8,13 +8,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -148,7 +149,6 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	public static final String STORY = CommentsFragment.class.getSimpleName() + ".story";
 	public static final String LIST_STATE = CommentsFragment.class.getSimpleName() + ".listState";
 	public static final String COMMENTS = CommentsFragment.class.getSimpleName() + ".comments";
-	@SuppressWarnings("unused")
 	private static final String TAG = CommentsFragment.class.getSimpleName();
 	/** Time (in milliseconds) before a set of comments is considered expired and should be reloaded. **/
 	private static final long CACHE_EXPIRATION = 1000 * 60 * 20; // 20 minutes
@@ -193,6 +193,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 				}
 			}
 		}
+		showdialog();
     }
 	
 	private void saveFile(File file, String input){
@@ -223,7 +224,6 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	    //Log.d("TAG", "Read from SDCARD");
 	    String temp[] = sb.toString().split("\n");
 	    for(int i=0; i<temp.length;i++){
 	    	if(temp[i].equals(input)){
@@ -232,6 +232,18 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	    	}
 	    }
 	    return false;
+	}
+	
+	private void showdialog(){
+		AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        dialog.setMessage("The bookmark has been saved.");
+        dialog.setPositiveButton(android.R.string.ok,
+            new DialogInterface.OnClickListener(){
+                public void onClick(
+                        DialogInterface dialoginterface, int i){
+                        }
+                });
+        dialog.show();
 	}
 
 	@SuppressWarnings("unchecked")
