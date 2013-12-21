@@ -276,7 +276,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 				}
 			}
 		}
-		String mes = "The writer has been follow.";
+		String mes = "The writer has been followed.";
 		showdialog(mes);
 	}
 	
