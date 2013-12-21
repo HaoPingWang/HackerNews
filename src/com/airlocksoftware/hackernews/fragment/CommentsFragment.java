@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -139,7 +140,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	private View.OnClickListener mBookmarkListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			saveStoryID(mStory.storyId);
+			saveBookmark();
 		}
 	};
 
@@ -172,18 +173,32 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		mBookmarkIcon.setOnClickListener(mBookmarkListener);
 	}
 
-	private void saveStoryID(long storyId) {
+	private void saveBookmark() {
 		String path = Environment.getExternalStorageDirectory().getPath();
 		File dir = new File(path + "/HackerNews");
+		String filename = "BookmarkSavedFile.txt";
+		File file = new File(path + "/Hackernews/" + filename);
+		String input=mStory.title+",CUTPOINT,"+String.valueOf(mStory.storyId);
 		if (!dir.exists()){
 			dir.mkdir();
+			saveFile(file, input);
 		}
-		String filename = "StoryIDSavedFile.txt";
+		else{
+			if(!file.exists()){
+				saveFile(file, input);
+			}
+			else{
+				if(!checkBookmarked(file, input)){
+					saveFile(file, input);
+				}
+			}
+		}
+    }
+	
+	private void saveFile(File file, String input){
 		try {
-		    File file = new File(path + "/Hackernews/" + filename);
 		    FileOutputStream fout = new FileOutputStream(file,isAdded());
-		       
-		    String input=String.valueOf(storyId)+"\n";
+		    input=input+"\n";
 	        fout.write(input.getBytes());
 		    fout.close();
 		} catch (FileNotFoundException e) {
@@ -192,7 +207,32 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		    e.printStackTrace();
 		}
 		Log.d(TAG, "Write storyID to SDCARD!");
-    }
+	}
+	
+	private boolean checkBookmarked(File file, String input){
+	    StringBuilder sb = new StringBuilder();
+	    try {
+	        FileInputStream fin = new FileInputStream(file);
+	        byte[] data = new byte[fin.available()];
+	        while (fin.read(data) != -1) {
+	            sb.append(new String(data));
+	        }
+	        fin.close();
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    //Log.d("TAG", "Read from SDCARD");
+	    String temp[] = sb.toString().split("\n");
+	    for(int i=0; i<temp.length;i++){
+	    	if(temp[i].equals(input)){
+	    		Log.d(TAG, "it is bookmarked!");
+	    		return true;
+	    	}
+	    }
+	    return false;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
