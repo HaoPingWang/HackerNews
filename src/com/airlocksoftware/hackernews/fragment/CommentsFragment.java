@@ -88,7 +88,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 
 	private View mHeaderView, mError, mEmpty, mLoading;
 	private TextView mHeaderTitle, mHeaderUsername, mHeaderPoints, mHeaderSelfText;
-	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon;
+	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon, mFollowIcon;
 	private View mUpvoteButton, mSelfTextContainer;
 	private ActionBarButton mBrowserButton, mRefreshButton;
 	private SharePopup mShare;
@@ -144,6 +144,13 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 			saveBookmark();
 		}
 	};
+	
+	private View.OnClickListener mFollowListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			saveFollow();
+		}
+	};
 
 	// Constants
 	public static final String STORY = CommentsFragment.class.getSimpleName() + ".story";
@@ -171,6 +178,8 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	private void findBottomview(View view){
 		mBookmarkIcon = (IconView) view.findViewById(R.id.icv_bookmark);
 		mBookmarkIcon.setOnClickListener(mBookmarkListener);
+		mFollowIcon = (IconView) view.findViewById(R.id.icv_follow);
+		mFollowIcon.setOnClickListener(mFollowListener);
 	}
 
 	private void saveBookmark() {
@@ -193,7 +202,8 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 				}
 			}
 		}
-		showdialog();
+		String mes="The bookmark has been saved.";
+		showdialog(mes);
     }
 	
 	private void saveFile(File file, String input){
@@ -207,7 +217,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		Log.d(TAG, "Write storyID to SDCARD!");
+		Log.d(TAG, "Write to SDCARD!");
 	}
 	
 	private boolean checkBookmarked(File file, String input){
@@ -234,9 +244,9 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	    return false;
 	}
 	
-	private void showdialog(){
+	private void showdialog(String mes){
 		AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-        dialog.setMessage("The bookmark has been saved.");
+        dialog.setMessage(mes);
         dialog.setPositiveButton(android.R.string.ok,
             new DialogInterface.OnClickListener(){
                 public void onClick(
@@ -244,6 +254,54 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
                         }
                 });
         dialog.show();
+	}
+	
+	private void saveFollow(){
+		String path = Environment.getExternalStorageDirectory().getPath();
+		File dir = new File(path + "/HackerNews");
+		String filename = "FollowSavedFile.txt";
+		File file = new File(path + "/Hackernews/" + filename);
+		String input=mStory.username;
+		if (!dir.exists()){
+			dir.mkdir();
+			saveFile(file, input);
+		}
+		else{
+			if(!file.exists()){
+				saveFile(file, input);
+			}
+			else{
+				if(!checkFollowed(file, input)){
+					saveFile(file, input);
+				}
+			}
+		}
+		String mes = "The user has been follow.";
+		showdialog(mes);
+	}
+	
+	private boolean checkFollowed(File file, String input){
+	    StringBuilder sb = new StringBuilder();
+	    try {
+	        FileInputStream fin = new FileInputStream(file);
+	        byte[] data = new byte[fin.available()];
+	        while (fin.read(data) != -1) {
+	            sb.append(new String(data));
+	        }
+	        fin.close();
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    String temp[] = sb.toString().split("\n");
+	    for(int i=0; i<temp.length;i++){
+	    	if(temp[i].equals(input)){
+	    		Log.d(TAG, "it is followed!");
+	    		return true;
+	    	}
+	    }
+	    return false;
 	}
 
 	@SuppressWarnings("unchecked")
