@@ -29,6 +29,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -88,10 +90,11 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 
 	private View mHeaderView, mError, mEmpty, mLoading;
 	private TextView mHeaderTitle, mHeaderUsername, mHeaderPoints, mHeaderSelfText;
-	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon, mFollowIcon;
+	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon, mFollowIcon, mLikeIcon;;
 	private View mUpvoteButton, mSelfTextContainer;
 	private ActionBarButton mBrowserButton, mRefreshButton;
 	private SharePopup mShare;
+	private WebView like;
 
 	// Listeners
 	private View.OnClickListener mVoteListener = new View.OnClickListener() {
@@ -151,6 +154,14 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 			saveFollow();
 		}
 	};
+	private View.OnClickListener mLikeListener =new View.OnClickListener(){
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			lik();
+			
+		}
+	};
 
 	// Constants
 	public static final String STORY = CommentsFragment.class.getSimpleName() + ".story";
@@ -172,6 +183,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		if (container == null) return null;
 		View view = inflater.inflate(R.layout.frg_comments, container, false);
 		findBottomview(view);
+		findwebview(view);
 		return view;
 	}
 	
@@ -180,6 +192,30 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		mBookmarkIcon.setOnClickListener(mBookmarkListener);
 		mFollowIcon = (IconView) view.findViewById(R.id.icv_follow);
 		mFollowIcon.setOnClickListener(mFollowListener);
+		mLikeIcon = (IconView) view.findViewById(R.id.icv_like);
+		mLikeIcon.setOnClickListener(mLikeListener);
+		
+	}
+	private void findwebview(View view){
+		String url = "http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwords.steveklabnik.com%2Fhow-dogecoin-changed-my-perspective-on-cryptocurrency&width=20&layout=button_count&action=like&show_faces=false&share=false&height=21";
+           like = (WebView)view.findViewById(R.id.webview);
+           like.loadUrl(url);
+           like.setWebViewClient(new WebViewClient());
+           class LikeWebviewClient  extends WebViewClient{
+                  public boolean shouldOverrideUrlLoading(WebView like, String url) {
+                      like.loadUrl(url);
+                      return true;
+                  }
+           }
+	}
+	private void lik(){
+		//String fburl="https://www.facebook.com/login.php?api_key=127760087237610&skip_api_login=1&display=popup&social_plugin=like&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Fplugin.optin%3F_path%3Dplugin.optin%26app_id%3D127760087237610%26client_id%3D127760087237610%26display%3Dpopup%26secure%3Dtrue%26social_plugin%3Dlike%26return_params%3D%257B%2522href%2522%253A%2522http%253A%252F%252Fwords.steveklabnik.com%252Fhow-dogecoin-changed-my-perspective-on-cryptocurrency%2522%252C%2522width%2522%253A%252220%2522%252C%2522layout%2522%253A%2522button_count%2522%252C%2522action%2522%253A%2522like%2522%252C%2522show_faces%2522%253A%2522false%2522%252C%2522share%2522%253A%2522false%2522%252C%2522height%2522%253A%252221%2522%252C%2522ret%2522%253A%2522optin%2522%252C%2522act%2522%253A%2522connect%2522%257D%26login_params%3D%257B%257D%26from_login%3D1&rcount=1";
+		//like.loadUrl(fburl);
+		//like.getContentHeight();
+		//like.requestLayout();
+		//like.loadDataWithBaseURL(like.getUrl(), "Clicked", "text/html", "utf-8", null);		
+		like.reload();
+		
 	}
 
 	private void saveBookmark() {
