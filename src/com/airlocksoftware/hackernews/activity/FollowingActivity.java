@@ -1,10 +1,6 @@
 // by jjyung 102522092
 package com.airlocksoftware.hackernews.activity;
 
-
-
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,12 +15,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
 import com.airlocksoftware.hackernews.R;
 
-
 public class FollowingActivity extends SlideoutMenuActivity {
-	
 	
 	ListView mList;
 	
@@ -35,24 +28,19 @@ public class FollowingActivity extends SlideoutMenuActivity {
 	File mDir = new File(SDpath + "/HackerNews");
 	File mFile = new File(SDpath + "/HackerNews/" + filename);
 	
-	
 	@Override
 	public void onCreate(Bundle savedState) {
 		super.onCreate(savedState);
 		
 		setContentView(R.layout.act_following);
-		
-		
 		getActionBarView().getController()
 											.setTitleText(getString(R.string.following));
 		setActiveMenuItem(R.id.following_button);
-		
 		if(checkFile())
 			loadFollowing();
 		else
-			mFollowing = null;
-		listBinding();
-		
+			nullFollowing();
+		listSetting();
 	}
 	
 	private boolean checkFile(){
@@ -76,13 +64,13 @@ public class FollowingActivity extends SlideoutMenuActivity {
 	    mFollowing = sb.toString().split("\n");
 	}
 
-	private void listBinding(){
-		mList = (ListView) findViewById(R.id.testlist);
-		
+	private void listSetting(){
+		// view
+		mList = (ListView) findViewById(R.id.followinglist);
+		// adapter
 		mList.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, mFollowing));
-		
-
+		// listener
 		mList.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 		    public void onItemClick(AdapterView<?> adapter, View view, int position, long arg)   {
@@ -92,15 +80,20 @@ public class FollowingActivity extends SlideoutMenuActivity {
 		});
 	}
 	
-	
-	
+	private void nullFollowing(){
+		mFollowing = new String[] {};
+	}
+	/* testing data
+	 * 
 	private static final String[] mStrings = new String[] {
 		 "jjyung","abc","bbb","bcd","123","1234","test001","test002","test003","test004"
 		 };
+	*/
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 	}
+	
 	
 }
