@@ -1,14 +1,16 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollview"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cnt_following"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-    
-	<RelativeLayout
-	    android:id="@+id/cnt_background"
-	    android:layout_width="match_parent"
-	    android:layout_height="396dp" >
-	    
-	    
-	</RelativeLayout>
 
-</ScrollView>
+    <ListView
+        android:id="@+id/testlist"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="?attr/listCacheColorHint"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true" />
+
+
+</FrameLayout>
