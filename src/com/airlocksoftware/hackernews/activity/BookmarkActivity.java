@@ -17,13 +17,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.airlocksoftware.hackernews.R;
+import com.airlocksoftware.hackernews.activity.MainActivity;
+import com.airlocksoftware.hackernews.activity.MainActivity.CommentsTab;
 
 public class BookmarkActivity extends SlideoutMenuActivity {
 	
 	ListView mList;
 	
 	String mBookmarkTitle[];
-	String mBookmarkUUID[];
+	int mBookmarkUUID[];
 	
 	String SDpath = Environment.getExternalStorageDirectory().getPath();
 	String filename = "BookmarkSavedFile.txt";
@@ -70,13 +72,13 @@ public class BookmarkActivity extends SlideoutMenuActivity {
 	    String fileString = sb.toString();
 	    String tuple[] = sb.toString().split("\n");
 	    String title[] = new String[tuple.length] ;
-	    String uuid[] = new String[tuple.length] ;
+	    int uuid[] = new int[tuple.length] ;
 	    
 	    for(int i=0;i<tuple.length;i++){
 	    	cutpointLeft = tuple[i].indexOf(",");
 	    	cutpointRight = tuple[i].lastIndexOf(",");
 	    	title[i] = tuple[i].substring(0, cutpointLeft);
-	    	uuid[i] = tuple[i].substring(cutpointRight+1, tuple[i].length());
+	    	uuid[i] = Integer.parseInt(tuple[i].substring(cutpointRight+1, tuple[i].length()));
 	    }
 	    
 	    mBookmarkTitle = title;
@@ -95,14 +97,14 @@ public class BookmarkActivity extends SlideoutMenuActivity {
 			@Override
 		    public void onItemClick(AdapterView<?> adapter, View view, int position, long arg)   {
 				BookmarkActivity activity = BookmarkActivity.this;
-				UserActivity.startUserActivity(activity, mBookmarkUUID[position]);
+				MainActivity.startCommentsActivity(activity, null, mBookmarkUUID[position], null, CommentsTab.COMMENTS);
 		    }
 		});
 	}
 	
 	private void nullBookmark(){
 		mBookmarkTitle = new String[] {};
-		mBookmarkUUID = new String[] {};
+		mBookmarkUUID = new int[] {};
 	}
 	
 	@Override
