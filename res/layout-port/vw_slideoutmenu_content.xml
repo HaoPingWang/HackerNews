@@ -106,7 +106,7 @@
         </com.airlocksoftware.holo.checkable.CheckableView>
         
         <com.airlocksoftware.holo.checkable.CheckableView
-            android:id="@+id/favoritelist_button"
+            android:id="@+id/bookmark_button"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/slideout_list_item_height"
             android:layout_weight="1"
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Favorite List" />
+                android:text="@string/bookmark" />
         </com.airlocksoftware.holo.checkable.CheckableView>
 
         <com.airlocksoftware.holo.checkable.CheckableView
