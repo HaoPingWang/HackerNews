@@ -187,7 +187,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		File dir = new File(path + "/HackerNews");
 		String filename = "BookmarkSavedFile.txt";
 		File file = new File(path + "/Hackernews/" + filename);
-		String input=mStory.title+",CUTPOINT,"+String.valueOf(mStory.storyId);
+		String input=mStory.title+",CUTPOINT,"+String.valueOf(mStory.storyId)+".CUTPOINT."+mStory.url;
 		if (!dir.exists()){
 			dir.mkdir();
 			saveFile(file, input);
