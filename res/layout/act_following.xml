@@ -1,0 +1,16 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cnt_following"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ListView
+        android:id="@+id/followinglist"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="?attr/listCacheColorHint"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true" />
+
+
+</FrameLayout>

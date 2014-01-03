@@ -37,6 +37,9 @@
             android:name=".activity.BackgroundActivity"
             android:label="@string/background" />
         <activity
+            android:name=".activity.FollowingActivity"
+            android:label="@string/following" />
+        <activity
             android:name=".activity.BookmarkActivity"
             android:label="@string/bookmark" />
         <!--<activity-->

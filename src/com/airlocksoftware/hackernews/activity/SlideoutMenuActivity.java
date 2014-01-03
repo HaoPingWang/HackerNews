@@ -263,6 +263,9 @@ public abstract class SlideoutMenuActivity extends ActionBarActivity implements 
 				intent = new Intent(activity, MainActivity.class);
 				intent.putExtra(MainActivity.PAGE, Page.NEW);
 				break;
+			case R.id.following_button:
+				intent = new Intent(activity, FollowingActivity.class);
+				break;
 			case R.id.bookmark_button:
 				intent = new Intent(activity, BookmarkActivity.class);
 				break;
@@ -303,5 +306,4 @@ public abstract class SlideoutMenuActivity extends ActionBarActivity implements 
 			showAbove();
 		}
 	};
-
 }
