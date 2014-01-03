@@ -1,3 +1,4 @@
+// by jjyung 102522092
 package com.airlocksoftware.hackernews.activity;
 
 import android.os.Bundle;
