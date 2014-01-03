@@ -119,6 +119,21 @@
                 android:layout_gravity="center_vertical"
                 android:text="Favorite List" />
         </com.airlocksoftware.holo.checkable.CheckableView>
+        
+        <com.airlocksoftware.holo.checkable.CheckableView
+            android:id="@+id/following_button"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/slideout_list_item_height"
+            android:layout_weight="1"
+            android:background="?attr/slideoutBtnBg" >
+
+            <com.airlocksoftware.holo.type.FontText
+                style="@style/FontText.SlideoutMenu.List"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/following" />
+        </com.airlocksoftware.holo.checkable.CheckableView>
 
         <com.airlocksoftware.holo.checkable.CheckableView
             android:id="@+id/user_button"

@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="slideout_list_item_height">60dp</dimen>
+    <dimen name="slideout_list_item_height">50dp</dimen>
     <dimen name="slideout_ctrl_height">65dp</dimen>
     <dimen name="folded_comment_height">60dp</dimen>
 

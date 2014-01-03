@@ -21,6 +21,7 @@
     <string name="donate">Donate</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="following">Following</string>
 
     <!-- MISC -->
     <string name="share">Share</string>

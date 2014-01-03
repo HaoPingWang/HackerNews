@@ -69,17 +69,17 @@ public class UserActivity extends SlideoutMenuActivity implements SharePopupInte
 	}
 
 	private void setupFragments() {
-		Fragment aboutUserFrag = new AboutUserFragment();
-		Bundle aboutUserArgs = new Bundle();
-		aboutUserArgs.putString(AboutUserFragment.USERNAME, mUsername);
-		aboutUserFrag.setArguments(aboutUserArgs);
-		mAdapter.addItem(aboutUserFrag);
-
 		Fragment submissionsFragment = new SubmissionsFragment();
 		Bundle submissionsArgs = new Bundle();
 		submissionsArgs.putString(SubmissionsFragment.USERNAME, mUsername);
 		submissionsFragment.setArguments(submissionsArgs);
 		mAdapter.addItem(submissionsFragment);
+		
+		Fragment aboutUserFrag = new AboutUserFragment();
+		Bundle aboutUserArgs = new Bundle();
+		aboutUserArgs.putString(AboutUserFragment.USERNAME, mUsername);
+		aboutUserFrag.setArguments(aboutUserArgs);
+		mAdapter.addItem(aboutUserFrag);
 
 		Fragment threadsFragment = new ThreadsFragment();
 		Bundle threadsArgs = new Bundle();
