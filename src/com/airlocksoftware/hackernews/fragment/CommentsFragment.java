@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -90,7 +92,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	private TextView mHeaderTitle, mHeaderUsername, mHeaderPoints, mHeaderSelfText;
 	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon, mFollowIcon;
 	private View mUpvoteButton, mSelfTextContainer;
-	private ActionBarButton mBrowserButton, mRefreshButton;
+	private ActionBarButton mBrowserButton, mRefreshButton, mTranslate;
 	private SharePopup mShare;
 
 	// Listeners
@@ -114,6 +116,28 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		public void onClick(View v) {
 			Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(mStory.url));
 			getActivity().startActivity(intent);
+		}
+	};
+	private View.OnClickListener mTranslateListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			
+			String fixcontentfront="http://www.worldlingo.com/SYls3jUpdI3LW6nuue6iRuAc_bgfnn7hv3roROoWsdI0-/banner?wl_url=";
+			String fixcontenttail="&wl_srclang=EN&wl_trglang=ZH_TW";
+			String content=mStory.url;
+			String out;
+			try {
+				out = URLEncoder.encode( content, "ASCII" ).toString();
+				//showdialog(out);
+				Uri uri=Uri.parse(fixcontentfront+out+fixcontenttail);
+				Intent intent = new Intent(Intent.ACTION_VIEW).setData(uri);
+				getActivity().startActivity(intent);
+				
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			
 		}
 	};
 
@@ -497,12 +521,14 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		ensureActionBarButtonsCreated(context);
 		controller.addButton(mBrowserButton);
 		controller.addButton(mRefreshButton);
+		controller.addButton(mTranslate);
 	}
 
 	@Override
 	public void cleanupActionBar(Context context, ActionBarController controller) {
 		controller.removeButton(mRefreshButton);
 		controller.removeButton(mBrowserButton);
+		controller.removeButton(mTranslate);
 	}
 
 	/**
@@ -553,6 +579,14 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 										.icon(R.drawable.ic_action_refresh)
 										.priority(Priority.HIGH)
 										.onClick(mRefreshListener);
+		}
+		
+		if (mTranslate == null) {
+			mTranslate = new ActionBarButton(context);
+			mTranslate.text(context.getString(R.string.translate))
+										.icon(R.drawable.translate_button)
+										.priority(Priority.HIGH)
+										.onClick(mTranslateListener);
 		}
 	}
 
