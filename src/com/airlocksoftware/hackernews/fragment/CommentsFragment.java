@@ -92,7 +92,8 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 	private TextView mHeaderTitle, mHeaderUsername, mHeaderPoints, mHeaderSelfText;
 	private IconView mUserIcon, mShareIcon, mUpvoteIcon, mReplyIcon, mBookmarkIcon, mFollowIcon;
 	private View mUpvoteButton, mSelfTextContainer;
-	private ActionBarButton mBrowserButton, mRefreshButton, mTranslate;
+	private ActionBarButton mBrowserButton, mRefreshButton;
+	//private ActionBarButton mTranslate;
 	private SharePopup mShare;
 
 	// Listeners
@@ -118,7 +119,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 			getActivity().startActivity(intent);
 		}
 	};
-	private View.OnClickListener mTranslateListener = new View.OnClickListener() {
+	/*private View.OnClickListener mTranslateListener = new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			
@@ -139,7 +140,7 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 			}	
 			
 		}
-	};
+	};*/
 
 	private View.OnClickListener mReplyListener = new View.OnClickListener() {
 		@Override
@@ -521,14 +522,14 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 		ensureActionBarButtonsCreated(context);
 		controller.addButton(mBrowserButton);
 		controller.addButton(mRefreshButton);
-		controller.addButton(mTranslate);
+		//controller.addButton(mTranslate);
 	}
 
 	@Override
 	public void cleanupActionBar(Context context, ActionBarController controller) {
 		controller.removeButton(mRefreshButton);
 		controller.removeButton(mBrowserButton);
-		controller.removeButton(mTranslate);
+		//controller.removeButton(mTranslate);
 	}
 
 	/**
@@ -581,13 +582,13 @@ public class CommentsFragment extends Fragment implements ActionBarClient, Loade
 										.onClick(mRefreshListener);
 		}
 		
-		if (mTranslate == null) {
+		/*if (mTranslate == null) {
 			mTranslate = new ActionBarButton(context);
 			mTranslate.text(context.getString(R.string.translate))
 										.icon(R.drawable.translate_button)
 										.priority(Priority.HIGH)
 										.onClick(mTranslateListener);
-		}
+		}*/
 	}
 
 	/** Bind data from mStory to views in mHeader **/

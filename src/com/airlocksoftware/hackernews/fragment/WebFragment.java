@@ -1,5 +1,8 @@
 package com.airlocksoftware.hackernews.fragment;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.apache.commons.lang3.StringUtils;
 
 import android.annotation.SuppressLint;
@@ -34,7 +37,7 @@ public class WebFragment extends Fragment implements ActionBarClient {
 	private WebView mWebView;
 	private ProgressBar mProgress;
 	private ActionBarButton mRefreshButton;
-	private ActionBarButton mBrowserButton;
+	private ActionBarButton mBrowserButton, mTranslate;
 
 	// Listeners
 	private OnClickListener mRefreshListener = new OnClickListener() {
@@ -52,6 +55,29 @@ public class WebFragment extends Fragment implements ActionBarClient {
 				Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(mUrl));
 				getActivity().startActivity(intent);
 			}
+		}
+	};
+	
+	private View.OnClickListener mTranslateListener = new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			
+			String fixcontentfront="http://www.worldlingo.com/SYls3jUpdI3LW6nuue6iRuAc_bgfnn7hv3roROoWsdI0-/banner?wl_url=";
+			String fixcontenttail="&wl_srclang=EN&wl_trglang=ZH_TW";
+			//String content=mStory.url;
+			String out;
+			try {
+				out = URLEncoder.encode( mUrl, "ASCII" ).toString();
+				//showdialog(out);
+				Uri uri=Uri.parse(fixcontentfront+out+fixcontenttail);
+				Intent intent = new Intent(Intent.ACTION_VIEW).setData(uri);
+				getActivity().startActivity(intent);
+				
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			
 		}
 	};
 
@@ -182,13 +208,21 @@ public class WebFragment extends Fragment implements ActionBarClient {
 										.priority(Priority.LOW);
 		}
 		ab.addButton(mBrowserButton);
-
+		if (mTranslate == null) {
+			mTranslate = new ActionBarButton(context);
+			mTranslate.text(context.getString(R.string.translate))
+										.icon(R.drawable.translate_button)
+										.priority(Priority.HIGH)
+										.onClick(mTranslateListener);
+		}
+		ab.addButton(mTranslate);
 	}
 
 	@Override
 	public void cleanupActionBar(Context context, ActionBarController ab) {
 		ab.removeButton(mRefreshButton);
 		ab.removeButton(mBrowserButton);
+		ab.removeButton(mTranslate);
 	}
 
 	/** As part of a tablet layout, load a new URL. **/
