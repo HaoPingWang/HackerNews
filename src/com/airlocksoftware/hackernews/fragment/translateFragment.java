@@ -30,7 +30,7 @@ import com.airlocksoftware.holo.actionbar.interfaces.ActionBarClient;
 import com.airlocksoftware.holo.actionbar.interfaces.ActionBarController;
 import com.airlocksoftware.holo.webview.WebViewPagerCompat;
 
-public class WebFragment extends Fragment implements ActionBarClient {
+public class translateFragment extends Fragment implements ActionBarClient {
 
 	private String mUrl;
 
@@ -45,7 +45,6 @@ public class WebFragment extends Fragment implements ActionBarClient {
 		@Override
 		public void onClick(View v) {
 			mRefreshButton.showProgress(true);
-			mWebView.loadUrl(mUrl);
 			mWebView.reload();
 		}
 	};
@@ -64,22 +63,43 @@ public class WebFragment extends Fragment implements ActionBarClient {
 		@Override
 		public void onClick(View v) {
 			
-			translatefunction();			
-			}
+			translatefunction();
+			
+			/*String fixcontentfront="http://www.worldlingo.com/SYls3jUpdI3LW6nuue6iRuAc_bgfnn7hv3roROoWsdI0-/banner?wl_url=";
+			String fixcontenttail="&wl_srclang=EN&wl_trglang=ZH_TW";
+			//String content=mStory.url;
+			String out;
+			try {
+				out = URLEncoder.encode( mUrl, "ASCII" ).toString();
+				//showdialog(out);
+				Uri uri=Uri.parse(fixcontentfront+out+fixcontenttail);
+				Intent intent = new Intent(Intent.ACTION_VIEW).setData(uri);
+				getActivity().startActivity(intent);
+				
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/	
+			
+		}
 	};
 	public void translatefunction(){
-		//this.getActivity().setContentView(R.layout.translatetest);
+		this.getActivity().setContentView(R.layout.translatetest);
 		String fixcontentfront="http://www.worldlingo.com/SYls3jUpdI3LW6nuue6iRuAc_bgfnn7hv3roROoWsdI0-/banner?wl_url=";
 		String fixcontenttail="&wl_srclang=EN&wl_trglang=ZH_TW";
 		String out;
-		WebSettings settings = mWebView.getSettings();
-		settings.setTextZoom(200);
-		setupScrollingOptions();
+        //WebView myBrowser=(WebView)getActivity().findViewById(R.id.webview1);  
+  
+        WebSettings websettings = myBrowser.getSettings();  
+        websettings.setSupportZoom(true);  
+        websettings.setBuiltInZoomControls(true);   
+        websettings.setJavaScriptEnabled(true);  
+        
+        myBrowser.setWebViewClient(new WebViewClient());  
         try {
 			out = URLEncoder.encode( mUrl, "ASCII" ).toString();
 			String url=fixcontentfront+out+fixcontenttail;
-			mWebView.loadUrl(url);
-
+	        myBrowser.loadUrl(url); 
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,9 +113,9 @@ public class WebFragment extends Fragment implements ActionBarClient {
 	public static final String TAG = WebFragment.class.getSimpleName();
 
 	// CONSTRUCTORS
-	public WebFragment() {
+	/*public WebFragment() {
 		// default no-arg constructor
-	}
+	}*/
 
 	@Override
 	public void onCreate(Bundle savedState) {
